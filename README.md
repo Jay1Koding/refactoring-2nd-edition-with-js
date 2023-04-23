@@ -183,4 +183,59 @@
 
 ---
 
-# 6.
+# 6. 기본적인 리팩토링
+
+## 1. 프로그래밍에서 가장 중요한 건 뭐여?
+
+1. 변수 : 어떤 데이터가?
+2. 함수 : 어떤 일을?
+3. 모듈 : 어떤 책임을?
+
+> 변수와 함수는 어떤 패러다임을 사용하던 기본적인 요소기에 Low-level이라 함
+> 추상적인 개념으로 비슷한 책임을 가진 걸 묶어나가는 걸 High-level이라 함
+> 각각 레벨 별로 리팩토링할 때 Low-level / High-level 리팩토링이라 함
+
+- 함수를 추출하기(Extract Function)
+- 함수 인라인하기(Inline Function)
+- 변수 추출(Extract Variable)
+- 변수 인라인하기(Inline Variable)
+- 변수 이름 바꾸기(Rename Variable)
+- 함수 선언 바꾸기(Change Function Declaration)
+- 매개변수 객체 만들기(Introduce Parameter Object)
+- 변수 캡슐화하기(Encapsulate Variable)
+- 여러 함수를 클래스로 묶기(Combine Functions Into Class)
+- 여러 함수를 변환 함수로 묶기(Combine Functions Into Transform)
+- 단계 쪼개기(Split Phase)
+
+## 함수 포인트 정리
+
+- 코드를 작성하는 건 개발자 즉, 사람이 이해하기 쉽도록 작성
+- 함수는?
+  - 특정한 일을 수행하는 코드의 집합
+  - 프로그램을 이루는 가장 기본적인 단위
+    - 프로그램을 작은 단위로 나누는 주된 수단
+
+1. 코드가 어떤 일을 하는 지 파악
+2. 독립적인 함수로 추출하기
+3. 목적에 맞는 이름 짓기
+   - 재사용이 가능
+   - 유지 보수성
+   - **의미 있는 이름 부여**
+   - 주석을 달지 않아도 함수 이름만으로 코드의 **목적이 파악**이 됨
+   - 함수 **내부 구현** 사항에 대해선 매번 신경 쓸 필요 없음
+
+- 함수 추출하기
+  - 지역 변수는 사용하는 곳과 최대한 가까운 곳에 정의하는 것이 좋다
+  - 반환할 경우 result라고 많이 사용
+  - 절차지향적으로 for문을 작성하지 않고 함수형 프로그래밍으로 가능
+
+```javascript
+let result = 0;
+for (const o of invoice.orders) {
+  result += o.amount;
+}
+return result;
+
+// 아래와 같이 한 줄로 표현 가능
+return invoice.orders.reduce((sum, order) => (sum += order.amount), 0);
+```
