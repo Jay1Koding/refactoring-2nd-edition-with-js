@@ -239,3 +239,13 @@ return result;
 // 아래와 같이 한 줄로 표현 가능
 return invoice.orders.reduce((sum, order) => (sum += order.amount), 0);
 ```
+
+- 함수 인라인하기
+
+  - 필요 이상으로 너무 쪼개지 말자
+
+- 결론
+  - 함수에 의미있는 이름을 부여하자
+  - 가독성 높이자
+  - 재사용 높이자
+  - 유지보수성 높이자
